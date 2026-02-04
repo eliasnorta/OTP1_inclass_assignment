@@ -7,11 +7,11 @@ class TemperatureConverterTest {
     void fahrenheitToCelsius() {
         TemperatureConverter converter = new TemperatureConverter();
 
-        assertEquals(55, converter.fahrenheitToCelsius(12.7));
+        assertEquals(-10.7, converter.fahrenheitToCelsius(12.7));
 
         assertEquals(0, converter.fahrenheitToCelsius(32));
 
-        assertEquals(-100, converter.fahrenheitToCelsius(-40));
+        assertEquals(-40.0, converter.fahrenheitToCelsius(-40));
     }
 
     @Test
@@ -31,6 +31,8 @@ class TemperatureConverterTest {
 
         assertTrue(converter.isExtremeTemperature(-100));
 
-        assertFalse(converter.isExtremeTemperature(100));
+        assertFalse(converter.isExtremeTemperature(20));
+
+        assertTrue(converter.isExtremeTemperature(51));
     }
 }
