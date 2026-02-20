@@ -14,6 +14,12 @@ public class TemperatureConverter {
         return Double.parseDouble(df.format(celcius * 9 / 5 + 32));
     }
 
+    public double kelvinToCelcius(int kelvin) {
+        DecimalFormat df = new DecimalFormat("#.#");
+
+        return Double.parseDouble(df.format(((kelvin - 273.15) * 100.0) / 100.0));
+    }
+
     public boolean isExtremeTemperature(double temperatureC) {
         if (temperatureC < -40) {
             return true;
