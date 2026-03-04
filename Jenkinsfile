@@ -6,7 +6,6 @@ pipeline {
     }
 
     environment {
-        // Make sure all standard macOS paths are included so sh commands work
         PATH = "/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
         DOCKERHUB_CREDENTIALS_ID = 'Docker_Hub'
         DOCKERHUB_REPO = 'eliasnorta/otp1_assignment'
