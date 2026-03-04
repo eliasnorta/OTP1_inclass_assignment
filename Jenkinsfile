@@ -13,6 +13,14 @@ pipeline {
     }
 
     stages {
+
+        stage('Check Docker') {
+            steps {
+                sh 'docker --version'
+                sh 'docker info'
+            }
+        }
+        
         stage('Checkout') {
             steps {
                 git 'https://github.com/eliasnorta/OTP1_inclass_assignment.git'
