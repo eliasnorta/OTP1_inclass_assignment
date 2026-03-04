@@ -14,12 +14,7 @@ pipeline {
 
     stages {
 
-        stage('Check Docker') {
-            steps {
-                sh '/usr/local/bin/docker --version'
-                sh '/usr/local/bin/docker info'
-            }
-        }
+        
         
         stage('Checkout') {
             steps {
