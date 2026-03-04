@@ -53,22 +53,21 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            steps {
-                script {
-                    sh "${DOCKER_CLI} build -t ${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG} ."
-                }
-            }
-        }
+    steps {
+        sh '/usr/local/bin/docker build -t eliasnorta/otp1_assignment:latest .'
+    }
+}
 
-        stage('Push Docker Image to Docker Hub') {
-            steps {
-                script {
-                    withDockerRegistry([credentialsId: "${DOCKERHUB_CREDENTIALS_ID}", url: 'https://index.docker.io/v1/']) {
-                        sh "${DOCKER_CLI} push ${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}"
-                    }
-                }
-            }
+stage('Push Docker Image to Docker Hub') {
+    steps {
+        withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS_ID}", 
+                                          usernameVariable: 'DOCKER_USER', 
+                                          passwordVariable: 'DOCKER_PASS')]) {
+            sh '/usr/local/bin/docker login -u $DOCKER_USER -p $DOCKER_PASS'
+            sh '/usr/local/bin/docker push eliasnorta/otp1_assignment:latest'
         }
+    }
+}
 
     }
 }
